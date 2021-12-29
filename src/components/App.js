@@ -1,7 +1,11 @@
+import React from "react";
+import List from './list'
+
 function App() {
   return (
-    <div className="App">
-    <h1>Hello there</h1>
+    <div>
+    <h2>Hello there</h2>
+    <List />
     </div>
   );
 }
