@@ -1,14 +1,21 @@
-import React from 'react'
-import Card from '@mui/material/Card'
-import { Typography } from '@mui/material'
+import React from "react";
+import Card from "@mui/material/Card";
+import { Typography } from "@mui/material";
+import CardContent from "@mui/material/CardContent";
+import { styled } from "@mui/material/styles";
 
-const ListCard = () => {
-    return (
-       <Card>
-           <Typography>hello</Typography>
-       </Card>
-       
-    )
-}
+const StyledCard = styled(Card)(({ theme }) => ({
+  marginBottom: theme.spacing(1),
+}));
 
-export default ListCard
+const ListCard = ({ text }) => {
+  return (
+    <StyledCard>
+      <CardContent>
+        <Typography>{text}</Typography>
+      </CardContent>
+    </StyledCard>
+  );
+};
+
+export default ListCard;

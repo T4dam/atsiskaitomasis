@@ -4,16 +4,20 @@ import { styled } from "@mui/material/styles";
 import ListCard from "./list-card";
 
 const BoxContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: "#ccc",
+  backgroundColor: "#dfe3e6",
   borderRadius: theme.spacing(1),
   width: 300,
-  padding: theme.spacing(1)
+  padding: theme.spacing(1),
+  marginRight: theme.spacing(1),
 }));
 
-const List = () => {
+const List = ({ title, cards }) => {
   return (
     <BoxContainer>
-      <ListCard />
+      <h4>{title}</h4>
+      {cards.map((card) => (
+        <ListCard text={card.text} />
+      ))}
     </BoxContainer>
   );
 };
