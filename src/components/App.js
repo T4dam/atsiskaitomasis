@@ -3,6 +3,7 @@ import List from "./list";
 import { connect } from "react-redux";
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import ActionButton from "./action-button";
 
 const FlexedBoxes = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -18,8 +19,9 @@ class App extends Component {
         <h2>Hello there</h2>
         <FlexedBoxes>
           {lists.map((list) => (
-            <List title={list.title} cards={list.cards} />
+            <List key={list.id} title={list.title} cards={list.cards} />
           ))}
+          <ActionButton list />
         </FlexedBoxes>
       </Box>
     );
