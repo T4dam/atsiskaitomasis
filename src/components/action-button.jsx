@@ -4,6 +4,8 @@ import { Box, Card, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import CloseIcon from "@mui/icons-material/Close";
+import { connect } from "react-redux";
+import { addList } from "../actions";
 
 const StyledButtonBox = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -42,10 +44,20 @@ class ActionButton extends React.Component {
       text: e.target.value,
     });
   };
+
+  handleAddList = () => {
+    const { dispatch } = this.props;
+    const { text } = this.state;
+    if (text) {
+      dispatch(addList(text));
+    }
+    return;
+  };
+
   renderAddButton = () => {
     const { list } = this.props;
 
-    const buttonText = list ? "Pridėti užrašą" : "Pridėti stulpelį";
+    const buttonText = list ? "Pridėti lentelę" : "Pridėti užrašą";
     const buttonTextOpacity = list ? 1 : 0.5;
     const buttonTextColor = list ? "white" : "inherit";
     const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
@@ -67,10 +79,10 @@ class ActionButton extends React.Component {
   renderForm = () => {
     const { list } = this.props;
     const placeholder = list
-      ? "Naujas kortelės užrašas..."
-      : "Naujas lentelės pavadinimas";
+      ? "Naujas lentelės pavadinimas..."
+      : "Naujas kortėlės užrašas...";
 
-    const buttonTitle = list ? "Pridėti užrašą" : "Pridėti lentelę";
+    const buttonTitle = list ? "Pridėti pavadinimą" : "Pridėti tekstą";
     return (
       <Box>
         <Card
@@ -97,6 +109,7 @@ class ActionButton extends React.Component {
         </Card>
         <SubmitButton>
           <Button
+            onMouseDown={this.handleAddList}
             variant="contained"
             style={{ color: "white", backgroundColor: "#5aac44" }}
           >
@@ -114,4 +127,4 @@ class ActionButton extends React.Component {
     return this.state.formOpen ? this.renderForm() : this.renderAddButton();
   }
 }
-export default ActionButton;
+export default connect()(ActionButton);
