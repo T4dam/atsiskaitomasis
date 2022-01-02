@@ -5,7 +5,7 @@ import { styled } from "@mui/material/styles";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import CloseIcon from "@mui/icons-material/Close";
 import { connect } from "react-redux";
-import { addList } from "../actions";
+import { addList, addCard } from "../actions";
 
 const StyledButtonBox = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -49,7 +49,19 @@ class ActionButton extends React.Component {
     const { dispatch } = this.props;
     const { text } = this.state;
     if (text) {
+      this.setState({
+        text: "",
+      });
       dispatch(addList(text));
+    }
+    return;
+  };
+  handleAddCard = () => {
+    const { dispatch, listID } = this.props;
+    console.log(this.props);
+    const { text } = this.state;
+    if (text) {
+      dispatch(addCard(listID, text));
     }
     return;
   };
@@ -109,7 +121,7 @@ class ActionButton extends React.Component {
         </Card>
         <SubmitButton>
           <Button
-            onMouseDown={this.handleAddList}
+            onMouseDown={list ? this.handleAddList : this.handleAddCard}
             variant="contained"
             style={{ color: "white", backgroundColor: "#5aac44" }}
           >

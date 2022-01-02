@@ -18,9 +18,17 @@ class App extends Component {
       <Box>
         <h2>Hello there</h2>
         <FlexedBoxes>
-          {lists.map((list) => (
-            <List key={list.id} title={list.title} cards={list.cards} />
-          ))}
+          {lists.map((list) => {
+            console.log(list);
+            return (
+              <List
+                listID={list.id}
+                key={list.id}
+                title={list.title}
+                cards={list.cards}
+              />
+            );
+          })}
           <ActionButton list />
         </FlexedBoxes>
       </Box>

@@ -13,14 +13,14 @@ const BoxContainer = styled(Box)(({ theme }) => ({
   height: "100%",
 }));
 
-const List = ({ title, cards }) => {
+const List = ({ title, cards, listID }) => {
   return (
     <BoxContainer>
       <h4>{title}</h4>
       {cards.map((card) => (
-        <ListCard key={card.id} text={card.text} />
+        <ListCard key={card.id} text={card.text} listID={listID} />
       ))}
-      <ActionButton />
+      <ActionButton listID={listID} />
     </BoxContainer>
   );
 };
