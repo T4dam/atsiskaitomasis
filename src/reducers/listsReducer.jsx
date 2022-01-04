@@ -1,37 +1,37 @@
 import { CONSTANTS } from "../actions";
 
-let listID = 2;
-let cardID = 3;
+let listID = `list-${1}`;
+let cardID = `card-${6}`;
 
 const initialState = [
   {
     title: "Something something",
-    id: 0,
+    id: `list-${1}`,
     cards: [
       {
-        id: 0,
+        id: `card-${1}`,
         text: "Testing card 1",
       },
       {
-        id: 1,
+        id: `card-${2}`,
         text: "Resting with card 2 now",
       },
     ],
   },
   {
     title: "hold up.. heeeeey",
-    id: 1,
+    id: `list-${2}`,
     cards: [
       {
-        id: 0,
+        id: `card-${3}`,
         text: "We gonna rockin' til the weels fall of",
       },
       {
-        id: 1,
+        id: `card-${4}`,
         text: "Hope you ready for the next episode heeeeeey",
       },
       {
-        id: 2,
+        id: `card-${5}`,
         text: "Smoke weed everyday",
       },
     ],

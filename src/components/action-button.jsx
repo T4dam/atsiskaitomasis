@@ -84,7 +84,7 @@ class ActionButton extends React.Component {
         }}
       >
         <AddIcon />
-        <p>{buttonText}</p>
+        <p style={{ flexShrink: 0 }}>{buttonText}</p>
       </StyledButtonBox>
     );
   };
