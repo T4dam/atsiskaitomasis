@@ -1,6 +1,6 @@
 import { CONSTANTS } from "../actions";
 
-let listID = `list-${1}`;
+let listID = `list-${3}`;
 let cardID = `card-${6}`;
 
 const initialState = [
@@ -49,7 +49,7 @@ const listsReducer = (state = initialState, action) => {
       listID += 1;
       return [...state, newList];
 
-    case CONSTANTS.ADD_CARD:
+    case CONSTANTS.ADD_CARD: {
       const newCard = {
         text: action.payload.text,
         id: cardID,
@@ -68,6 +68,49 @@ const listsReducer = (state = initialState, action) => {
           return list;
         }
       });
+      return newState;
+    }
+
+    case CONSTANTS.DRAG_HAPPENED:
+      const {
+        droppableIdStart,
+        droppableIdEnd,
+        droppableIndexStart,
+        droppableIndexEnd,
+        draggableId,
+        type,
+      } = action.payload;
+      const newState = [...state];
+
+      // draginami patys sutlpeliai
+      if (type === "list") {
+        const list = newState.splice(droppableIndexStart, 1);
+        newState.splice(droppableIndexEnd, 0, ...list);
+        return newState;
+      }
+
+      // tame paciame liste
+      if (droppableIdStart === droppableIdEnd) {
+        const list = state.find((list) => droppableIdStart === list.id);
+        const card = list.cards.splice(droppableIndexStart, 1);
+        list.cards.splice(droppableIndexEnd, 0, ...card);
+      }
+
+      // kituose listuose
+      if (droppableIdStart !== droppableIdEnd) {
+        const listStart = state.find((list) => droppableIdStart === list.id);
+        // surasti sulpeli kur ivyko nutempimas
+
+        //istraukiama kortele is stulpelio
+        const card = listStart.cards.splice(droppableIndexStart, 1);
+
+        // surandama kur baigiasi tempimas
+        const listEnd = state.find((list) => droppableIdEnd === list.id);
+
+        //kortele dedama i nauja stulpeli
+        listEnd.cards.splice(droppableIndexEnd, 0, ...card);
+      }
+
       return newState;
 
     default:

@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import { styled } from "@mui/material/styles";
 import { Draggable } from "react-beautiful-dnd";
 
-const StyledCard = styled(Card)(({ theme }) => ({
+const StyledCardContainer = styled(Card)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 }));
 
@@ -13,17 +13,15 @@ const ListCard = ({ text, id, index }) => {
   return (
     <Draggable draggableId={String(id)} index={index}>
       {(provided) => (
-        <div
+        <StyledCardContainer
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <StyledCard>
-            <CardContent>
-              <Typography>{text}</Typography>
-            </CardContent>
-          </StyledCard>
-        </div>
+          <CardContent>
+            <Typography>{text}</Typography>
+          </CardContent>
+        </StyledCardContainer>
       )}
     </Draggable>
   );

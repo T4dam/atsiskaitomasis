@@ -127,9 +127,9 @@ class ActionButton extends React.Component {
           >
             {buttonTitle}{" "}
           </Button>
-          <CloseIcon style={{ marginLeft: "8px", cursor: "pointer" }}>
-            Close
-          </CloseIcon>
+          <CloseIcon
+            style={{ marginLeft: "8px", cursor: "pointer" }}
+          ></CloseIcon>
         </SubmitButton>
       </Box>
     );
